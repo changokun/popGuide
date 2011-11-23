@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "aqui se habla español">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>popGuide</title>
+<style>
+	
+	.popGuide_popper:focus { border:none; }
+	.popGuide_popper { display:none; position:absolute; z-index:5; }
+	.popGuide { position:relative; }
+	.popGuide_control_start { border:2px solid red; background-color:orange; padding:10px; font-weight:bold; font-family:arial; }
+	
+	span.popGuide_popper_a { border:4px solid olive; background-color:wheat; padding:10px; font-family:arial; top:-70px; left:375px; width:150px; }
+	.popGuide_popper span.meta { color:#333; font-size:9px; text-transform:uppercase; display:inline-block; }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('.popGuide').css({color:'olive', position:'relative', outline:'none'});
+		$('.popGuide').each(function(x){
+			$(this).attr('tabindex', x + 1);
+		});
+		$('.popGuide_sibling').focus(function() {
+			$(this).next('.popGuide_popper').show(100);
+		});
+		$('.popGuide_sibling').blur(function() {
+			$(this).next('.popGuide_popper').hide(100);
+		});
+		$('.popGuide').focus(function(){
+			popper = $(this).find('.popGuide_popper');
+			popper.show(100);
+		});
+		$('.popGuide').blur(function(){
+			popper = $(this).find('.popGuide_popper');
+			popper.hide(250);
+		});
+		$(".popGuide_popper").click(function(){
+			parent =  $(this).parent();
+			parent.blur();
+			tabindex = parseInt(parent.attr('tabindex'));
+			tabindex++;
+			console.log(tabindex);
+			$("[tabindex='" + tabindex + "']").focus();
+		});
+		popGuide_control_start = $(".popGuide_control_start");
+		if(popGuide_control_start.length) {
+			popGuide_control_start.css({cursor:'pointer'});
+			popGuide_control_start.click(function(){
+				$("[tabindex='1']").focus();
+			});
+		} else {
+			$('.popGuide').first().focus();
+		}
+	});
+</script>
+</head>
+<body style="width:500px; margin:50px; font-family:Arial; font-size:14px;">
+  <h1>Demo</h1>
+  
+  <span class='popGuide_control_start'>click here or press tab to start the tour</span>
+  
+  <p class='popGuide'>
+  <span class='popGuide_popper popGuide_popper_a'>
+  		they pop up like this <span class="meta">hit tab to continue</span>
+  	</span>
+  	popGuide is meant to be used like tool tips or beauty tips that the user will see, and will see more than one of, in a particular order. they aren't meant to be accidentally discovered by a wandering mouseover, they are intended to be shown to the user at his or her own pace.
+  </p>
+
+  <p class='popGuide'>
+  	<span class='popGuide_popper popGuide_popper_a'>
+  		and clicking on them will show the next popper <span class="meta">click me to continue</span>
+  	</span>
+  	They are meant to show sequential information. show a users the steps of how to do something. that's the real difference between these and beauty tips.
+	</p>
+
+  <p class='popGuide'>
+    	<span class='popGuide_popper popGuide_popper_a'>
+  		drawing the users eyes around your page. <span class="meta">click me or press tab to continue</span>
+  	</span>Any element that can contain another is able to be used as the &lsquo;anchor&rsquo; for the popper. style and position the popper relative to the anchor.</p>
+  
+  <p>Et officia  incididunt, proident pariatur VHS shoreditch veniam est  ethical messenger bag you probably haven't heard of them assumenda lo-fi nihil.  Gentrify elit consequat nulla  helvetica keffiyeh.  Beard keytar sartorial, tattooed dolore dolor  williamsburg sed in  vinyl est  placeat readymade cosby sweater qui.  Chambray twee delectus, leggings american apparel whatever viral nisi tempor freegan esse  fap consectetur.  Vice salvia blog, next level thundercats occaecat  synth irony mcsweeney's vegan dolore fugiat  sustainable ethical.  Thundercats pitchfork portland cliche.  Artisan fixie chambray dolore, vegan messenger bag minim four loko marfa american apparel.</p>
+  
+  <p class='popGuide'>
+    	<span class='popGuide_popper popGuide_popper_a'><img src='http://www.lolcats.com/images/u/07/29/thumbs/lolcatsdotcomi3u3jgd4kqtuyatn.jpg' >
+  		the poppers can be as complex as you need<span class="meta">continue &raquo;</span>
+  	</span>Each anchor element can have its own style.</p>
+
+  	  <p class='popGuide'>
+    	<span class='popGuide_popper popGuide_popper_a'><img src='http://www.lolcats.com/images/u/07/29/thumbs/lolcatsdotcomi3u3jgd4kqtuyatn.jpg' >
+  		the poppers can be as complex as you need<span class="meta">continue &raquo;</span>
+  	</span>Because it relies on your browser's focus, it will never show more than one at a time.</p>
+
+  <div class='popGuide'>
+	  <img src='http://www.lolcats.com/images/u/07/29/thumbs/lolcatsdotcomi3u3jgd4kqtuyatn.jpg' style='width:200px; height:150px' >
+	  <div class='popGuide_popper' style='top:107px; left:83px; position:absolute; border:3px solid lime; padding:20px; background-color:orange' class='popGuide_popper'>oink</div>
+  </div>
+
+  <p class='popGuide'>Marfa in  readymade mollit, veniam yr cillum  PBR vegan irure  et skateboard artisan vice leggings.  Nihil whatever sunt, stumptown PBR synth before they sold out blog.  Sustainable fugiat  in  locavore 8-bit, williamsburg deserunt  accusamus 3 wolf moon ad skateboard duis  raw denim quis art party.  Veniam thundercats irure, gluten-free vero vegan DIY.  Brooklyn PBR high life, jean shorts scenester keffiyeh laborum occaecat  cred next level dreamcatcher banh mi whatever messenger bag wes anderson.  Odio letterpress gentrify cliche lomo aesthetic.  Duis  wayfarers wolf butcher voluptate  gentrify.<img src='http://www.lolcats.com/images/u/07/30/thumbs/lolcatsdotcomuw8057a3ctjv3j70.jpg' style='top:-67px; left:83px;' class='popGuide_popper'></p>
+  
+
+  <p class='popGuide'>Keytar irure  eiusmod sunt nesciunt.  Marfa consectetur lo-fi readymade cupidatat  salvia.  Id  voluptate  master cleanse, freegan before they sold out squid seitan yr 3 wolf moon chambray wayfarers tumblr ethical cupidatat.  Minim jean shorts tumblr helvetica non  retro.  Synth cardigan photo booth, cillum  aute  portland labore lo-fi retro locavore echo park butcher nisi brunch irure.  Photo booth wayfarers occaecat  sunt.  Mcsweeney's nulla  lomo cillum  keffiyeh laborum, sustainable retro.<img src='http://www.lolcats.com/images/u/08/41/thumbs/lolcatsdotcomneu9uco8iqif38rn.jpg' style='top:-67px; left:83px;' class='popGuide_popper'></p>
+  
+
+  <p class='popGuide'>Magna brooklyn mlkshk shoreditch yr accusamus.  Gluten-free sunt leggings etsy.  Raw denim VHS cred, helvetica scenester assumenda pitchfork bicycle rights irony terry richardson vice delectus.  Tempor cosby sweater jean shorts biodiesel retro, 8-bit elit.  Organic biodiesel jean shorts portland aliqua letterpress, aliquip echo park do deserunt  stumptown iphone minim.  8-bit dreamcatcher american apparel synth letterpress leggings sed, tattooed quis vegan vero fugiat.  Qui  vegan do commodo skateboard ea.<img src='http://www.lolcats.com/images/u/07/46/thumbs/lolcatsdotcomu2fj12uzywy9zo8e.jpg' style='top:-67px; left:83px;' class='popGuide_popper'></p>
+  
+  
+  <form style="position:relative">
+  	<input type="text" class="popGuide_sibling"><span class='popGuide_popper popGuide_popper_a' style="left:40px; right:30px;">
+  		how do i get this to show up for form elements? <span class="meta">click me or press tab to continue</span>
+  	</span>
+  	<input type="text" class="popGuide_sibling"><span class='popGuide_popper popGuide_popper_a'>
+  		how do i get this to show up for form elements? <span class="meta">click me or press tab to continue</span>
+  	</span>
+  </form>
+  
+  
+</body>
+</html>
